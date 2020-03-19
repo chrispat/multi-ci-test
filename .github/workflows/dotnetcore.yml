@@ -9,7 +9,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.image }}
+    strategy:
+      matrix:
+        image: ['ubunt-latest', 'windows-latest', 'macos-latest']
 
     steps:
     - uses: actions/checkout@v2
