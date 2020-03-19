@@ -12,7 +12,16 @@ pr:
        - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: $(image)
+
+strategy:
+  matrix:
+    mac-os:
+      image: 'macos-latest'
+    windows:
+      image: 'windows-latest'
+    linux:
+      image: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
