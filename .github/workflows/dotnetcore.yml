@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{ matrix.image }}
     strategy:
       matrix:
-        image: ['ubunt-latest', 'windows-latest', 'macos-latest']
+        image: ['ubuntu-latest', 'windows-latest', 'macos-latest']
 
     steps:
     - uses: actions/checkout@v2
