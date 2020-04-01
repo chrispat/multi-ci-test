@@ -5,14 +5,32 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  repository_dispatch:
+    types: [matrix-ci]
 
 jobs:
   build:
-
+    if: github.event != 'repository_dispatch'
     runs-on: ${{ matrix.image }}
     strategy:
       matrix:
         image: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+  build-2:
+    if: github.event == 'repository_dispatch'
+    runs-on: ${{ matrix.image }}
+    strategy:
+      matrix:
+        image: ${{  github.event.client_payload.images }}
 
     steps:
     - uses: actions/checkout@v2
