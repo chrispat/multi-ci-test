@@ -1,16 +1,14 @@
 name: .NET Core CI 2
-
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  repository_dispatch:
+    types: [matrix-ci]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.image }}
+    strategy:
+      matrix:
+        image: ${{  github.event.client_payload.images }}
 
     steps:
     - uses: actions/checkout@v2
