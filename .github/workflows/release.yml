@@ -7,6 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   release:
     types:
+      - published
       - prereleased
       - released
   # Allows you to run this workflow manually from the Actions tab
@@ -23,7 +24,7 @@ jobs:
     steps:
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Release even type ${{ github.event.action }}
         run: echo $payload
         env:
           payload: ${{  toJson(github.event) }}
