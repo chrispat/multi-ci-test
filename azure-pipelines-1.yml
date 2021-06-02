@@ -21,3 +21,10 @@ steps:
     Inline: |
       gci env:\
     azurePowerShellVersion: 'LatestVersion'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azure-pipeline-pm(5e811388-da36-4a22-b49b-e3477f384ec3)'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'set'
+
