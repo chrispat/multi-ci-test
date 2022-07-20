@@ -1,5 +1,7 @@
 name: .NET Core. CI 1
 
+foo: test
+
 on:
   push:
     branches: [ master ]
@@ -8,7 +10,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.image }}
     strategy:
       matrix:
